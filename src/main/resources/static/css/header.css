@@ -1,0 +1,67 @@
+header{
+    background-color: #0070ba!important;
+}
+.banner{
+    width: 100%;
+    background-image: url('../img/banner.png');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-origin: border-box;
+}
+
+.navbar-toggler{
+    color:white!important;
+}
+header .navbar,.profil .dropdown-item{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.profil .dropdown-menu{
+    margin-top: 0;
+    
+}
+.nav-item a{
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-right: 2px!important;
+}
+.nav-item a  {
+    color:white!important;
+    font-weight: bold;
+    line-height: 2.4rem;
+    margin: 0;
+}
+.profil .dropdown-divider{
+    margin:0;
+}
+.profil a {
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-right: 2px!important;
+}
+.profil a  {
+    color:white!important;
+    font-weight: bold;
+    line-height: 2.4rem;
+    margin: 0;
+}
+.nav-item a:hover,.profil a:hover{
+    background-color: white;
+    color:#0070ba!important;
+}
+
+.link-active a{
+    background-color: white;
+    color:#0070ba!important;
+}
+@media only screen and (min-width: 992px) {
+    .profil{
+        float: right!important;
+        position: absolute;
+        right: 0;
+    }
+}
+#profil-menu{
+     background-color: #0070ba;
+}

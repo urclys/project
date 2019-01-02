@@ -1,0 +1,20 @@
+
+.contrat-box{
+    padding: 1rem;
+    border:1px solid #ccc;
+    background-color: #f5f5f5;
+}
+.champ{
+    color:#444;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.ligne-champ{
+    line-height: 50px;
+    border-bottom: 1px dotted #ccc;
+}
+.titre{
+    color:blueviolet;
+    font-weight: bold;
+    text-transform:uppercase;
+}

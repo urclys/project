@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:Layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	Layout:decorator="~{/layout}">
+<head>
+<meta charset="utf-8">
+<title th:text=${title}></title>
+</head>
+<body>
+
+	<main class="container" Layout:fragment="content"
+		style="margin-top:4rem;">
+	<div class="contrat-box">
+		<h2 style="text-transform: uppercase;">Liste de mes paiements</h2>
+		<div class="progress" >
+			<div class="progress-bar progress-bar-striped" role="progressbar" th:style="${'width:'+((paiements!=null)?(paiements.size()*100/36):0)+'%;'}"
+				 th:aria-valuenow="${(paiements!=null)?paiements.size():0}" aria-valuemin="0"
+				aria-valuemax="36" th:text="${(paiements!=null &&paiements.size()>0)?paiements.size()+' / 36 mois':''}"></div>
+		</div>
+		<br>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Date</th>
+					<th scope="col">Montant</th>
+					<th scope="col">Etat</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${paiements==null || paiements.isEmpty()}">
+					<td colspan="3" align="center">Aucun paiement</td>
+				</tr>
+				<tr th:each="paiement:${paiements}">
+					<td th:text="${paiement.getFormattedMonthYearDate()}">07-2018</td>
+					<td th:text="${paiement.Montant}">5000.00MAD</td>
+					<td>Versé <i class="fa fa-check"></i></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="row">
+			<div class="col-sm"></div>
+			<div class="col-sm">
+				<nav aria-label="..." style="margin: 0 auto;">
+					<ul class="pagination">
+						<li th:class="${page>0}?'page-item':'page-item disabled'"><a
+							class="page-link"
+							th:href="@{mespaiements(page=${page-1},size=${size})}"
+							tabindex="-1">Previous</a></li>
+
+						<li th:each="p,s:${pages}"
+							th:class="${page==s.index}?'page-item active':'page-item'"
+							class="page-item"><a class="page-link"
+							th:href="@{mespaiements(page=${s.index},size=${size})}"
+							th:text="${s.index+1}">1</a></li>
+
+						<li class="page-item"
+							th:class="${page<pages.length-1}?'page-item':'page-item disabled'"><a
+							class="page-link"
+							th:href="@{mespaiements(page=${page+1},size=${size})}">Next</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-sm"></div>
+		</div>
+	</div>
+
+	</main>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:Layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	Layout:decorator="~{/layout}">
+<head>
+<meta charset="utf-8">
+<title th:text=${title}></title>
+</head>
+<body>
+
+	<main class="container" Layout:fragment="content"
+		style="margin-top:4rem;">
+	<div class="box">
+		<h2 style="text-transform: uppercase;">Liste de Admis</h2>
+		<br>
+		<div th:object="${boursiers}" class="col-sm-12">
+			<table th:object="${ba}" class="table">
+				<thead>
+					<tr>
+						<th scope="col">Code Dossier</th>
+						<th scope="col">Boursier</th>
+						<th scope="col">Descipline</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="b : ${boursiers}">
+						<td th:text=${b.getCIN()}></td>
+						<td><a href="@{boursier/(id=${b.id})}"
+							th:text=${b.getNomComplet()}></a></td>
+						<td><span class="label label-success"
+							th:text=${b.getDiscipline()}></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="row">
+			<div class="col-sm"></div>
+			<div class="col-sm">
+				<nav aria-label="..." style="margin: 0 auto;">
+					<ul class="pagination">
+						<li class="page-item disabled"><a class="page-link" href="#"
+							tabindex="-1">Previous</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item active"><a class="page-link" href="#">2
+								<span class="sr-only">(current)</span>
+						</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">Next</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-sm"></div>
+		</div>
+		<div class="btn-group">
+			<a class="btn btn-success" th:href="@{/editions/genererExcel}"
+				role="button">Generer Excel</a><a class="btn btn-info"
+				th:href="@{/editions/creerEdition}" role="button">Creer Edition</a>
+		</div>
+	</div>
+	<br>
+	</main>
+</body>
+</html>

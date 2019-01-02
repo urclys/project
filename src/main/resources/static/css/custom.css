@@ -1,0 +1,21 @@
+body{
+    background-color: #fff;
+}
+
+.champ-obligatoire{
+    color:blueviolet;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 18px;
+    float: right;
+}
+
+.box{
+    padding: 1rem;
+    border:1px solid #ccc;
+    background-color: #f5f5f5;
+}
+
+.controlle-col{
+    text-align: center;
+}

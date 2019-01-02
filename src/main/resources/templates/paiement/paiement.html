@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:Layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	Layout:decorator="~{/layout}">
+<head>
+<meta charset="utf-8">
+<title th:text=${title}></title>
+</head>
+<body>
+
+	<main class="container" Layout:fragment="content"
+		style="margin-top:4rem;">
+	<div class="contrat-box">
+		<h2 style="text-transform: uppercase;">Liste des paiements</h2>
+		<br>
+		<div class="row mb-2">
+			<div class="col-md">
+				<div class="btn-group">
+					<a class="btn btn-primary" href="versement.html"> Nouveau
+						Versement</a>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<form class="form-inline">
+			<div class="form-group mb-2 mx-sm-3">
+				<div class="input-group ">
+					<label for="EditionSelect" class="input-group-prepend"> <span
+						class="input-group-text" id="basic-addon3">Edition</span>
+					</label> <select class="form-control" id="EditionSelect">
+						<option>Edition</option>
+						<option value="2016">2016</option>
+						<option value="2017">2017</option>
+						<option value="2018">2018</option>
+					</select>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	</main>
+
+</body>
+</html>

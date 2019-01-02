@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:Layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	Layout:decorator="~{/layout}">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" th:href="@{/css/contrat.css}"
+	href="../../static/css/contrat.css">
+
+<title>Boursiers</title>
+</head>
+<body>
+
+	<main class="container" Layout:fragment="content"
+		style="margin-top:4rem;">
+
+	<div class="contrat-box">
+		<div class="row ligne-champ">
+			<div class="col titre">Information générales</div>
+		</div>
+		<div class="row ligne-champ">
+			<div class="col-md-3 champ">Nom:</div>
+			<div class="col-md-9"
+				th:text="${boursier.Nom}+' '+${boursier.Prenom}">AMAZZAL
+				El-habib</div>
+		</div>
+		<div class="row ligne-champ">
+			<div class="col-md-3 champ">C.I.N:</div>
+			<div class="col-md-9" th:text="${boursier.CIN}">JC545799</div>
+		</div>
+		<div class="row ligne-champ">
+			<div class="col-md-3 champ">Adresse:</div>
+			<div class="col-md-9" th:text="${boursier.Adresse}">Hay ERAK
+				BOUARGUAN N° 61 - AGADIR</div>
+		</div>
+		<div class="row ligne-champ">
+			<div class="col-md-3 champ">établissement:</div>
+			<div class="col-md-9" th:text="${boursier.Formation.Etablissement}">école
+				Mohammadia d'Ingénieur</div>
+		</div>
+		<div class="row ligne-champ">
+			<div class="col-md-3 champ">Discipline:</div>
+			<div class="col-md-9" th:text="${boursier.Discipline}">Informatique
+				- IQL</div>
+		</div>
+		<div class="row ligne-champ">
+			<div class="col-md-3 champ">Sujet de thése:</div>
+			<div class="col-md-9" th:text="${boursier.Formation.SujetThese}">AI
+				in medecine</div>
+		</div>
+		<br>
+		<div th:if="${boursier.Contrat!=null}">
+			<div class="row ligne-champ">
+				<div class="col titre">Compte bancaire</div>
+			</div>
+			<div class="row ligne-champ">
+				<div class="col-md-3 champ">N° du compte (RIB):</div>
+				<div class="col-md-9" th:text="${boursier.Contrat.RIB}">2458
+					7857 7458 54256</div>
+			</div>
+			<div class="row ligne-champ">
+				<div class="col-md-3 champ">Banque:</div>
+				<div class="col-md-9" th:text="${boursier.Contrat.Banque}">CIH</div>
+			</div>
+			<div class="row ligne-champ">
+				<div class="col-md-3 champ">Agence:</div>
+				<div class="col-md-9" th:text="${boursier.Contrat.Agence}">CIH-Inezguane</div>
+			</div>
+			<div class="row ligne-champ">
+				<div class="col-md-3 champ">Ville:</div>
+				<div class="col-md-9" th:text="${boursier.Contrat.Ville}">AGADIR</div>
+			</div>
+		</div>
+		<div class="row ligne-champ">
+			<div class="col-md ">
+				<a class="btn btn-primary"
+					th:if="${(boursier.Contrat==null || (boursier.Contrat.Etat!=boursier.Contrat.Etat.Valide) ) && boursier.getEtatBoursier().toString().equals('Admis')}"
+					th:href="@{/contrats/update}"> Modifier la banque <i
+					class="  fa fa-edit"></i>
+				</a> <a id="genererContrat" th:if="${boursier.Contrat!=null}"
+					th:href="@{/contrats/download}" class="btn btn-primary">
+					Générer PDF <i class="  fa fa-file-pdf-o"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	</main>
+	<script Layout:fragment="scripts" th:if="${boursier.Contrat!=null}">
+		$("#genererContrat").click(function(){
+			alertify.alert('Génération du contrat...<br><center><img  style="margin:0 auto!important;width:60%;" src="../../../img/processing.gif"></center>').show();
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rapportSemestriel" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="61bbaa08-3656-43ba-b7fc-5e243281c95a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<subDataset name="Dataset1" uuid="7d2ba41b-bd4d-45df-9034-135cb158c35a">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<parameter name="NumBoursier" class="java.lang.String"/>
+	<parameter name="Edition" class="java.lang.String"/>
+	<parameter name="AnneeUniversitaire" class="java.lang.String"/>
+	<parameter name="NomBoursier" class="java.lang.String"/>
+	<parameter name="GSMBoursier" class="java.lang.String"/>
+	<parameter name="MailBoursier" class="java.lang.String"/>
+	<parameter name="Etalissement" class="java.lang.String"/>
+	<parameter name="Discipline" class="java.lang.String"/>
+	<parameter name="Theme" class="java.lang.String"/>
+	<parameter name="Sujet" class="java.lang.String"/>
+	<parameter name="MotCles" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="80" splitType="Stretch">
+			<line>
+				<reportElement x="2" y="0" width="550" height="1" uuid="6f4fa9fa-453e-4eee-a368-a569643c8983"/>
+			</line>
+			<rectangle>
+				<reportElement x="0" y="17" width="552" height="20" backcolor="#CCCCCC" uuid="ad836a5f-9cf2-478e-9f2a-369b776c4861"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="363" y="17" width="80" height="20" uuid="ff606410-94a3-49f8-b87d-01af84d42d23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° de Boursier :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="16" width="80" height="20" uuid="87ab6f43-cb8c-4f2a-9ebd-69dd277a58d4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rapport d'étape]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="17" width="101" height="20" uuid="3e7fc3fc-144f-4ad0-9034-379ad2ab579b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NumBoursier}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="77" y="50" width="399" height="30" uuid="171ff7fc-9a06-47ce-8a79-46f7ce57f9da"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROGRAMME DE BOURSES D'EXCELLENCE DE RECHERCHE]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="623" splitType="Stretch">
+			<staticText>
+				<reportElement x="170" y="0" width="90" height="31" uuid="1d1ce60e-53f2-4421-9e56-185b5003b0d4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PBER : Édition]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="262" y="0" width="100" height="30" uuid="89b55333-e02d-4d56-9504-7f2a097b4558"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Edition}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="210" y="36" width="110" height="20" uuid="e06a4965-e396-4515-81c7-98aaf949c4e4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rapport d'étape ( * )]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="70" width="120" height="20" uuid="b9b29e45-83e5-43e3-a762-ff6ffac48143"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Année Universitaire]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="240" y="70" width="170" height="20" uuid="3171990f-46b7-4cdb-850f-290139837ed8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{AnneeUniversitaire}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="90" width="395" height="30" uuid="104df773-2ee8-4d27-abd0-c0ba4221f5e3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Fait à : ................................ Le , ......... /......../............ ( ** )]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="130" width="160" height="30" uuid="a02d82fc-2f82-4fab-aed1-46e554f76c75"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nom et prénom    :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="160" width="160" height="30" uuid="84920c73-c206-47e5-8e38-2f8dbb0e7dc5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° de la Bourse    :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="190" width="160" height="30" uuid="118eccd9-e1fc-4b10-bffd-dbe5246c43e3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° Téléphone (GSM)  :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="220" width="160" height="30" uuid="c5f73fae-7dad-4f73-9b58-cd2cd04f7c25"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Adresse électronique :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="250" width="160" height="30" uuid="2cb4b03f-3af8-4c9f-b572-d8a3aea1e38d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Établissement Universitaire :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="280" width="160" height="30" uuid="9df4e418-b5e0-4503-988f-caa434b31582"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Discipline :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="310" width="160" height="30" uuid="e57e71a3-c23b-47ba-ab08-8ff9b4910946"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thème de recherche :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="340" width="160" height="30" uuid="b16e11f2-43d1-49d7-a5e4-045038201162"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Titre de thèse préparée :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="370" width="160" height="30" uuid="efb781dd-e091-4e90-8f65-3fa4d21babfa"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mots clés :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="130" width="295" height="30" uuid="9811078e-f8d1-4ddb-bc15-9cd4fd9e8934"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{NomBoursier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="160" width="295" height="30" uuid="cf268b77-efed-43e8-bc46-53761d9956f8"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{NumBoursier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="190" width="295" height="30" uuid="9194ae31-7702-4b16-9d90-a45a7031f3ec"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{GSMBoursier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="220" width="295" height="30" uuid="6cafd3f5-38b8-4aff-a9fc-0bc5eb2d56f5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{MailBoursier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="250" width="294" height="30" uuid="1aa2f5ad-a934-44cb-bcb9-fccac8f21b2d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{Etalissement}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="280" width="293" height="30" uuid="967dfc78-ca0c-4b22-b8e1-36b6d38f5a58"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{Discipline}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="310" width="292" height="30" uuid="bb262d5a-e409-4230-8a9b-011d721d7ce6"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{Theme}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="340" width="291" height="30" uuid="78fd1dfc-b273-4ad3-bca7-a44905c54014"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{Sujet}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="370" width="291" height="30" uuid="fabd0a9f-8746-4429-9f9d-cad243630e72"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{MotCles}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

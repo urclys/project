@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:Layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	Layout:decorator="~{/layout}">
+<head>
+<meta charset="utf-8">
+<title>Boursiers</title>
+</head>
+<body>
+
+	<main class="container" Layout:fragment="content"
+		style="margin-top:4rem;">
+	<h4>Déposer votre rapport de ce semestre (S2)</h4>
+	<hr>
+	<div class="row" th:if="${error!=null}">
+		<div class="col">
+			<div class="alert alert-warning" th:text="${error}"></div>
+		</div>
+	</div>
+	<form th:action="@{/rapports/charger}" method="POST"
+		style="margin-top: 1rem;" enctype="multipart/form-data">
+		<div class="form-group row">
+			<label for="inputRapport" class="col-md-2 col-form-label">Rapport:<span
+				class="champ-obligatoire">*</span></span>
+			</label>
+			<div class="col-md-6">
+				<input type="file"
+					accept="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+					class="form-control" id="inputRapport" name="rapport"
+					placeholder="Rapport" required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-md-2"></div>
+			<div class="col-md-6">
+				<button type="submit" class="btn btn-primary">
+					<i class="fa fa-upload mr-2"></i>Charger
+				</button>
+			</div>
+		</div>
+	</form>
+
+	</main>
+
+</body>
+</html>

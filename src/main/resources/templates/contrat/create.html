@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:Layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	Layout:decorator="~{/layout}">
+<head>
+<meta charset="utf-8">
+<title>Contrat</title>
+</head>
+<body>
+
+	<main class="container" Layout:fragment="content"
+		style="margin-top:4rem;">
+	<h4>Contrat: Compte bancaire</h4>
+	<form id="contratForm" th:object="${contrat}"
+		th:action="@{/contrats/update}" method="post"
+		style="margin-top: 1rem;">
+		<input type="hidden" style="visibility: hidden;" th:field="*{Id}">
+		<div class="form-group row">
+			<label for="inputRIB" class="col-md-2 col-form-label">N° du
+				compte (RIB):<span class="champ-obligatoire">*</span></span>
+			</label>
+			<div class="col-md-6">
+				<input type="text" class="form-control" id="inputRIB"
+					placeholder="RIB" th:field="*{RIB}" required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="inputBanque" class="col-md-2 col-form-label">Banque:<span
+				class="champ-obligatoire">*</span></span>
+			</label>
+			<div class="col-md-6">
+				<input type="text" class="form-control" id="inputBanque"
+					placeholder="Banque" th:field="*{Banque}" required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="inputAgence" class="col-md-2 col-form-label">Agence:<span
+				class="champ-obligatoire">*</span></span>
+			</label>
+			<div class="col-md-6">
+				<input type="text" class="form-control" id="inputAgence"
+					placeholder="Agence" th:field="*{Agence}" required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="inputSwiftCode" class="col-md-2 col-form-label">Code
+				Swift:<span class="champ-obligatoire">*</span></span>
+			</label>
+			<div class="col-md-6">
+				<input type="text" class="form-control" id="inputSwiftCode"
+					placeholder="Code Swift" th:field="*{CodeSwift}" required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="inputVille" class="col-md-2 col-form-label">Ville:<span
+				class="champ-obligatoire">*</span></span>
+			</label>
+			<div class="col-md-6">
+				<select type="text" th:field="*{Ville}" class="form-control"
+					id="inputVille" placeholder="Ville" required>
+					<option value="">Choisir une ville</option>
+					<option value="AL HAJEB">AL HAJEB</option>
+					<option value="AGADIR">AGADIR</option>
+					<option value="AL HOCEIMA">AL HOCEIMA</option>
+					<option value="ASSA ZAG">ASSA ZAG</option>
+					<option value="AZILAL">AZILAL</option>
+					<option value="BENI MELLAL">BENI MELLAL</option>
+					<option value="BENSLIMANE">BENSLIMANE</option>
+					<option value="BOUJDOUR">BOUJDOUR</option>
+					<option value="BOULEMANE">BOULEMANE</option>
+					<option value="BERRECHID">BERRECHID</option>
+					<option value="CASABLANCA">CASABLANCA</option>
+					<option value="CHEFCHAOUEN">CHEFCHAOUEN</option>
+					<option value="CHTOUKA AIT BAHA">CHTOUKA AIT BAHA</option>
+					<option value="CHICHAOUA">CHICHAOUA</option>
+					<option value="EL JADIDA">EL JADIDA</option>
+					<option value="EL KELAA DES SRAGHNAS">EL KELAA DES
+						SRAGHNAS</option>
+					<option value="ERRACHIDIA">ERRACHIDIA</option>
+					<option value="ESSAOUIRA">ESSAOUIRA</option>
+					<option value="ES SEMARA">ES SEMARA</option>
+					<option value="FES">FES</option>
+					<option value="FIGUIG">FIGUIG</option>
+					<option value="GUELMIM">GUELMIM</option>
+					<option value="IFRANE">IFRANE</option>
+					<option value="KENITRA">KENITRA</option>
+					<option value="KHEMISSET">KHEMISSET</option>
+					<option value="KHENIFRA">KHENIFRA</option>
+					<option value="KHOURIBGA">KHOURIBGA</option>
+					<option value="LAAYOUNE">LAAYOUNE</option>
+					<option value="LARACHE">LARACHE</option>
+					<option value="MOHAMMEDIA">MOHAMMEDIA</option>
+					<option value="MARRAKECH">MARRAKECH</option>
+					<option value="MEKNES">MEKNES</option>
+					<option value="NADOR">NADOR</option>
+					<option value="OUARZAZATE">OUARZAZATE</option>
+					<option value="OUJDA">OUJDA</option>
+					<option value="OUED EDDAHAB">OUED EDDAHAB</option>
+					<option value="RABAT">RABAT</option>
+					<option value="SALE">SALE</option>
+					<option value="SKHIRAT">SKHIRAT</option>
+					<option value="TEMARA">TEMARA</option>
+					<option value="SEFROU">SEFROU</option>
+					<option value="SAFI">SAFI</option>
+					<option value="SETTAT">SETTAT</option>
+					<option value="SIDI KACEM">SIDI KACEM</option>
+					<option value="TANGER">TANGER</option>
+					<option value="TAN TAN">TAN TAN</option>
+					<option value="TAOUNAT">TAOUNAT</option>
+					<option value="TAROUDANNT">TAROUDANNT</option>
+					<option value="TATA">TATA</option>
+					<option value="TAZA">TAZA</option>
+					<option value="TETOUAN">TETOUAN</option>
+					<option value="TIZNIT">TIZNIT</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-md-2"></div>
+			<div class="col-md-6">
+				<input type="submit" id="contratSubmitBtn" class="btn btn-primary"
+					value="Soumettre">
+			</div>
+		</div>
+	</form>
+	</main>
+	<script Layout:fragment="scripts">
+		console.log("Hi");
+		$(document).ready(function() {
+			$("#contratForm").on('submit', function(e) {
+				if (!valid_credit_card($("#inputRIB").val())) {
+					e.preventDefault();
+					alertify.error("Le N° du compte (RIB) n'est pas valide");
+				} else {
+					
+				}
+			});
+		});
+		function valid_credit_card(value) {
+			// accept only digits, dashes or spaces
+			if (/[^0-9-\s]+/.test(value))
+				return false;
+
+			// The Luhn Algorithm. It's so pretty.
+			var nCheck = 0, nDigit = 0, bEven = false;
+			value = value.replace(/\D/g, "");
+
+			for (var n = value.length - 1; n >= 0; n--) {
+				var cDigit = value.charAt(n), nDigit = parseInt(cDigit, 10);
+
+				if (bEven) {
+					if ((nDigit *= 2) > 9)
+						nDigit -= 9;
+				}
+
+				nCheck += nDigit;
+				bEven = !bEven;
+			}
+			return true;
+			return (nCheck % 10) == 0;
+		}
+	</script>
+</body>
+</html>

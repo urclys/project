@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rapportSemestriel" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="61bbaa08-3656-43ba-b7fc-5e243281c95a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="NumBoursier" class="java.lang.String"/>
+	<parameter name="NumDossier" class="java.lang.String"/>
+	<parameter name="NomPrenom" class="java.lang.String"/>
+	<parameter name="CIN" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement x="167" y="4" width="220" height="24" uuid="b2471a87-2be3-4a5b-9026-d9773624549e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRAT D'ENGAGEMENT]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="0" width="550" height="1" uuid="e26b79d2-273b-424d-8688-f6983b575c26"/>
+			</line>
+			<rectangle>
+				<reportElement x="0" y="41" width="552" height="20" backcolor="#CCCCCC" uuid="ed8b0264-4bef-4328-9051-825409bb3a17"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="363" y="41" width="80" height="20" uuid="c813900e-7284-4a6f-bb68-25245e5c4492"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° de Dossier :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="40" width="80" height="20" uuid="4cf7903c-c845-48b7-ad36-36c21876d3b6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° de Bourse :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="40" width="150" height="20" uuid="8470e282-f2a7-4528-ba5b-42c76fa2a3e9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NumBoursier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="443" y="41" width="108" height="20" uuid="6cfd411b-da08-4a62-853d-f73c2d726aa7"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NumDossier}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="165" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="552" height="110" uuid="f2929399-320a-42c5-885b-3c7b92b064eb"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Considérant la convention relative à la gestion du programme de Bourses d’Excellence de Recherche signée, le 04/10/2013, entre le Centre National pour la Recherche Scientifique et Technique, le Ministère de l’Enseignement Supérieur, de la Recherche Scientifique et de la Formation des Cadres, et le Ministère de l’Economie et des Finances.
+- Considérant la loi n° 80-00 relative au Centre National pour la Recherche Scientifique et Technique, notamment son article 3.
+- Considérant le compte 656115 "Allocation de bourses de recherche" inscrit dans le budget de fonctionnement du CNRST.
+- Considérant l’arrêté du ministère de l’éducation nationale, de l’enseignement supérieur, de la formation des cadres et de la recherche scientifique n° 1371- 07, du 13/09/2008, approuvant le cahier des normes pédagogiques nationales du cycle du doctorat.
+Il est arrêté et convenu ce qui suit :
+Un contrat d’engagement à durée déterminée, pour l’octroi d’une bourse d’excellence de recherche est conclu entre : le Centre National pour la Recherche Scientifique et Technique, ci-après désigné le " CNRST "représenté par son Directeur, d’une part,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="109" width="120" height="20" uuid="6af30a0f-7f80-43da-bbb8-65262033c5cf"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nom & Prénom  	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="129" width="120" height="20" uuid="6a1b511e-8b96-4d37-8966-1fe4ca204f7d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[C.I.N  	              :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="130" width="260" height="18" uuid="979c5660-ed34-4d37-b1c3-7b4c571c8f5b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CIN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="109" width="260" height="20" uuid="9a140939-55bf-48a4-bee6-69f8d8de0530"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NomPrenom}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="129" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="-15" width="120" height="20" uuid="70b9b62c-6733-4a74-9fad-c11f330f8bbc"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Adresse  	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="5" width="120" height="20" uuid="8ea4fb60-1aeb-4990-92af-4de5c9e43da6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Établissement 	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="26" width="120" height="20" uuid="a2365277-1a7a-4fb7-95cf-0ba58eed13f1"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Discipline  	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="46" width="120" height="20" uuid="8d1659fe-ea96-4325-9b6b-82663b995bce"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[C.E.Doc  	:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:Layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	Layout:decorator="~{/layout}">
+<head>
+<meta charset="utf-8">
+<title>Boursiers</title>
+</head>
+<body>
+
+	<main class="container" Layout:fragment="content"
+		style="margin-top:4rem;">
+
+	<div class="row" th:if="${loginError}">
+		<div class="col">
+			<div class="alert alert-warning">Le Login ou le mot de pass est incorrect.</div>
+		</div>
+	</div>
+	<form th:action="@{/login}" method="POST"
+		style="margin-top: 1rem;" enctype="multipart/form-data">
+		<div class="form-group row">
+			<label for="inputMail" class="col-md-2 col-form-label">
+			</label>
+			<div class="col-md-5">
+				<input type="mail" class="form-control" id="inputMail" name="email"
+					placeholder="Adresse e-mail" required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="inputPassword" class="col-md-2 col-form-label">
+			</label>
+			<div class="col-md-5">
+				<input type="password" class="form-control" id="inputPassword" name="password"
+					placeholder="Code de confidentialité"  required>
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-md-2"></div>
+			<div class="col-md-6">
+				<button type="submit" class="btn btn-primary">Se connecter
+				</button>
+			</div>
+		</div>
+	</form>
+
+	</main>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:Layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	Layout:decorator="~{/layout}">
+<head>
+<meta charset="utf-8">
+<title th:text="${title}">Boursiers</title>
+</head>
+<body>
+	<main class="container" Layout:fragment="content"
+		style="margin-top:4rem;">
+	<div class="contrat-box">
+		<div class="alert alert-warning" th:if="${error!=null}">
+			<i class="fa fa-info-circle mr-4"></i> <span th:text="${error}"></span>
+		</div>
+		<div class="row mb-2"
+			th:if="${boursier.EtatBoursier==boursier.EtatBoursier.Active && (showModifier || showGenerer || showGenererAnnuel || showModifierAnnuel)}">
+			<div class="col-md">
+				<div class="btn-group">
+				
+					<button th:if="${(showModifier || showGenerer) && month==6}" class="btn btn-primary" id="genererRapportSemestrielBtn">
+						<i class="fa fa-upload"></i><span class="ml-2" th:text="${showModifier?'Modifier rapport':'Générer rapport'}"></span>
+						<i class="ml-2" th:text="${semestreActuel}">S</i>
+					</button>
+					<button th:if="${(showGenererAnnuel || showModifierAnnuel) && month==12}" class="btn btn-success" id="genererRapportAnnuelBtn">
+						<i class="fa fa-upload"></i><span class="ml-2" th:text="${showModifierAnnuel?'Modifier rapport annuel':'Générer rapport annuel'}"></span>
+						<i class="ml-2" th:text="${#temporals.createToday().year}"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Rapport</th>
+					<th scope="col">Type</th>
+					<th scope="col">Semestre/Année</th>
+					<th scope="col">Date</th>
+					<th scope="col">Etat</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${rapports==null || rapports.size()==0}">
+					<td colspan="4" align="center">Vous n'avez aucun rapport</td>
+				</tr>
+				<tr th:each="rapport:${rapports}">
+					<td><a th:href="@{/rapports/download/}+${rapport.URIDocument}"
+						th:text="${rapport.URIDocument}"> <i
+							class="fa fa-file-pdf-o ml-2"></i></a><br>
+							<a th:href="@{/rapports/download/}+${rapport.URIResumeDocument}"
+						th:text="${rapport.URIResumeDocument}"> <i
+							class="fa fa-file-pdf-o ml-2"></i></a>
+							</td>
+					<td th:text="${rapport.Type}">Non spécifié</td>
+					<td th:text="${rapport.Type==rapport.Type.Semestriel?rapport.Semestre:rapport.Date.Year}">Non spécifié</td>
+					<td th:text="${rapport.Date}">Non spécifié</td>
+					<td>
+						<h4 th:switch="${rapport.Etat.toString()}">
+							<span class="badge badge-secondary" th:case="'Livre'"> Pas
+								encore validé </span> <span class="badge badge-success"
+								th:case="'Valide'"> Validé <i class="fa fa-check"></i>
+							</span> <span class="badge badge-danger" th:case="'Rejete'">
+								Rejeté <i class="fa fa-warning"></i>
+							</span>
+						</h4>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- /* Modal Encadrant */-->
+	<form method="POST" th:action="@{/rapports/generer}" enctype="multipart/form-data">
+		<input type="text"  name="type" id="TypeInp" style="visibility:hidden;">
+		<div class="modal fade" id="Modalencadrant" role="dialog"
+			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Coordonnées
+							de l'encadrant</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+
+						<div class="form-group">
+							<label for="NomInp">Nom et Prenom:</label> <input type="text"
+								class="form-control" name="Nom" id="NomInp" placeholder="Nom"
+								required>
+						</div>
+						<div class="form-group">
+							<label for="GSMInp">GSM:</label> <input type="text"
+								class="form-control" name="GSM" id="GSMInp" placeholder="GSM"
+								required>
+						</div>
+						<div class="form-group">
+							<label for="MailInp">Email:</label> <input type="text"
+								class="form-control" name="Email" id="MailInp"
+								placeholder="Email" required>
+						</div>
+						<div class="form-group">
+							<label for="rapport">Rapport:</label> <input type="file"
+								class="form-control" name="rapport" id="rapport"
+								placeholder="Email" >
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Annuler</button>
+						<button id="genererRpport" class="btn btn-primary" type="submit">Générer</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	</main>
+	<script Layout:fragment="scripts"
+		th:if="${boursier.EtatBoursier==boursier.EtatBoursier.Active && (showGenerer || showModifier || showGenererAnnuel)}">
+		$("#genererRapportSemestrielBtn").click(function() {
+			$("#TypeInp").val("Semestriel");
+			$("#Modalencadrant").modal('show');
+		});
+		$("#genererRapportAnnuelBtn").click(function() {
+			$("#TypeInp").val("Annuel");
+			$("#Modalencadrant").modal('show');
+		});
+		$("#genererRpport")
+				.click(
+						function() {
+							$("#Modalencadrant").modal('hide');
+							alertify
+									.alert(
+											'Génération du rapport...<br><center><img  style="margin:0 auto!important;width:60%;" src="../../../img/processing.gif"></center>')
+									.show();
+
+						});
+	</script>
+</body>
+</html>

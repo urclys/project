@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:Layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	Layout:decorator="~{/layout}">
+<head>
+<meta charset="utf-8">
+<title>Boursiers</title>
+</head>
+<body>
+	<main class="container" Layout:fragment="content"
+		style="margin-top:4rem;">
+	<div class="contrat-box">
+		<h2 style="text-transform: uppercase;">
+			Liste des rapports du boursier <a href="#" th:text="${boursier}"></a>
+		</h2>
+		<br>
+		<div class="alert alert-warning" th:if="${showPasDeRapportSemestriel || showPasDeRapportAnnuel}">
+			<i class="fa fa-info-circle mr-4"></i>
+			<p th:if="${showPasDeRapportSemestriel}">Ce boursier n'a pas déposé son
+			rapport pour le semestre actuel (<i th:text="${boursier.getSemestreActuel()}"></i>)</p>
+			<p th:if="${showPasDeRapportAnnuel}">Ce boursier n'a pas déposé son
+			rapport annuel(<i class="ml-2" th:text="${#temporals.createToday().year}"></i>)</p>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Rapport</th>
+					<th scope="col">Type</th>
+					<th scope="col">Semestre/Année</th>
+					<th scope="col">Etat</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="r:${rapports}">
+					<td><a th:href="@{/rapports/download/}+${r.URIDocument}"
+						th:text="${r.URIDocument}"> <i class="fa fa-file-pdf-o ml-2"></i></a></td>
+					<td th:text="${r.Type}">Non spécifié</td>
+					<td th:text="${r.Type==r.Type.Semestriel?r.Semestre:r.Date.Year}">Non
+						spécifié</td>
+					<td th:switch="${r.getEtat().getValue()}">
+						<p th:case="'Livre'">
+							<span class="badge badge-primary" th:text="${r.getEtat()}">Livré</span>
+						</p>
+						<p th:case="'Valide'">
+							<span class="badge badge-success" th:text="${r.getEtat()}">Valide</span>
+						</p>
+						<p th:case="'Rejete'">
+							<span class="badge badge-danger" th:text="${r.getEtat()}">Rejeté</span>
+						</p>
+					</td>
+					<td><a th:href="@{/rapports/valider(id=${r.id})}"
+						class="btn btn-success btn-sm"><i class="fa fa-check"></i>Valider</a>
+						<a th:href="@{/rapports/rejeter(id=${r.id})}"
+						class="btn btn-danger btn-sm"><i class="fa fa-remove"></i>Rejeté</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	</main>
+
+</body>
+</html>

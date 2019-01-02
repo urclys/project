@@ -1,0 +1,143 @@
+
+<!-- link-active -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title th:text="${title+' -CNRST E-BOURSIER'}">CNRST E-BOURSIER</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	href="../../static/css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/css/alertify.css}"
+	href="../../static/css/alertify.css">
+<link rel="stylesheet" th:href="@{/fonts/ionicons.min.css}"
+	href="../../static/fonts/ionicons.min.css">
+<link rel="stylesheet" th:href="@{/css/Footer-Basic.css}"
+	href="../../static/css/Footer-Basic.css">
+<link rel="stylesheet" th:href="@{/css/header.css}"
+	href="../../static/css/header.css">
+<link rel="stylesheet" th:href="@{/css/custom.css}"
+	href="../../static/css/custom.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+	<header class="">
+		<div class="banner">
+			<a th:href="@{/}"><img th:src="@{/img/logo.png}"
+				src="../../static/img/logo.png"></a>
+		</div>
+		<div class="container-fluid">
+			<nav class="navbar navbar-expand-lg navbar-dark mr-auto">
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+					
+						<li th:class='${linkActive==0?"nav-item link-active":"nav-item"}'><a class="nav-link" th:href="@{/}">Accueil
+								<i class="fa fa-home"></i>
+						</a></li>
+						<li sec:authorize="hasAuthority('Responsable')" th:class='${linkActive==1?"nav-item link-active":"nav-item"}'>
+							<a class="nav-link " th:href="@{/boursiers/}">Boursiers</a>
+						</li>
+						<!-- <li sec:authorize="hasAuthority('Responsable')" class="nav-item"><a
+							class="nav-link" th:href="@{/rapports/rapports}">Rapports</a></li> -->
+							
+						<li sec:authorize="hasAuthority('Responsable')" th:class='${linkActive==2?"nav-item link-active":"nav-item"}'>
+						<a class="nav-link" th:href="@{/boursiers/encours}">Pré-selection</a>
+						</li>
+						
+						<li sec:authorize="hasAuthority('Responsable')" th:class='${linkActive==3?"nav-item link-active":"nav-item"}'>
+						<a class="nav-link" th:href="@{/boursiers/admission}">Admissions</a>
+						</li>
+						
+						<li sec:authorize="hasAuthority('Responsable')" th:class='${linkActive==4?"nav-item link-active":"nav-item"}'>
+						<a class="nav-link" th:href="@{/boursiers/admis}">Liste des Admis</a>
+						</li>
+						<li sec:authorize="hasAuthority('Responsable')" th:class='${linkActive==5?"nav-item link-active":"nav-item"}'>
+						<a class="nav-link" th:href="@{/editions/editions}">Editions</a>
+						</li>
+						<li sec:authorize="hasAuthority('Boursier')" th:class='${linkActive==6?"nav-item link-active":"nav-item"}'>
+						<a class="nav-link" th:href="@{/paiements/mespaiements}">Mes
+								Paiements</a>
+						</li>
+						<li sec:authorize="hasAuthority('Boursier')" th:class='${linkActive==7?"nav-item link-active":"nav-item"}'>
+							<a class="nav-link" th:href="@{/rapports/mesrapports}">Mes
+								Rapports</a>
+						</li>
+						<li sec:authorize="hasAuthority('Boursier')" th:class='${linkActive==8?"nav-item link-active":"nav-item"}'><a
+							class="nav-link" th:href="@{/boursiers/mesdetails}">Mon Contrat</a></li>
+					</ul>
+					<div sec:authorize="isAuthenticated()"
+						class=" dropdown   my-2 my-lg-0 inline profil">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"
+							th:text="${#authentication.principal.NomComplet}"> Med
+							Amazzal <i class=" fa fa-id-card-o"></i>
+						</a>
+						<div class="dropdown-menu " id="profil-menu"
+							aria-labelledby="navbarDropdown">
+							<!-- a class="dropdown-item" th:href="@{/boursiers/details}">
+								Profil <i class="fa fa-id-card-o"
+								style="float: right; line-height: 38.4px;"></i>
+							</a-->
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/logout}"> Déconnexion<i
+								class=" fa fa-sign-out"
+								style="float: right; line-height: 38.4px;"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<div class="container mt-4" th:if="${etatError!=null}">
+		<div class="alert alert-danger" th:text="${etatError}"></div>
+	</div>
+	<main Layout:fragment="content"> </main>
+
+	<footer class="container-fluid footer-basic">
+		<div class="social">
+			<a href="#"><i class="icon  ion-social-twitter"></i></a> <a href="#"><i
+				class="icon ion-social-facebook"></i></a>
+		</div>
+		<ul class="list-inline">
+			<li class="list-inline-item footer-links"><a
+				href="http://www.cnrst.ma">CNRST</a></li>
+			<li class="list-inline-item footer-links"><a href="#">Services</a></li>
+			<li class="list-inline-item footer-links"><a href="#">à
+					propos</a></li>
+		</ul>
+		<p class="copyright">Copyright © 2018 CNRST. All Rights Reserved.</p>
+	</footer>
+	<script th:src="@{/js/jquery-3.3.1.min.js}"
+		src="../../static/js/jquery-3.3.1.min.js"></script>
+	<script th:src="@{/js/popper.min.js}"
+		src="../../static/js/popper.min.js"></script>
+	<script th:src="@{/highcharts/js/highcharts.js}"
+		src="../../static/highcharts/js/highcharts.js"></script>
+	<script th:src="@{/highcharts/js/highcharts-3d.js}"
+		src="../../static/highcharts/js/highcharts-3d.js"></script>
+	<script th:src="@{/js/bootstrap.min.js}"
+		src="../../static/js/bootstrap.min.js"></script>
+	<script th:src="@{/js/alertify.js}" src="../../static/js/alertify.js"></script>
+	<script th:if="${success!=null}" th:inline="javascript">
+		/*<![CDATA[*/
+		alertify.success(/*[[${success}]]*/);
+		/*]]>*/
+	</script>
+	<script Layout:fragment="scripts">
+		
+	</script>
+
+</body>
+</html>

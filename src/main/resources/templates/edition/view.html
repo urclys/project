@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:Layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	Layout:decorator="~{/layout}">
+<head>
+<meta charset="utf-8">
+<title th:text=${title}></title>
+</head>
+<body>
+
+	<main class="container" Layout:fragment="content"
+		style="margin-top:4rem;">
+	<div class="btn-toolbar mb-8" role="toolbar"
+		aria-label="Toolbar with button groups">
+		<div class="btn-group mr-2" role="group" aria-label="First group">
+			<button class="btn btn-secondary" type="button"
+				data-toggle="collapse" data-target="#collapseExample"
+				aria-expanded="false" aria-controls="collapseExample">Liste
+				des boursiers LMD</button>
+			<button class="btn btn-info" type="button" data-toggle="collapse"
+				data-target="#collapseExample1" aria-expanded="false"
+				aria-controls="collapseExample">Liste des boursiers NLMD</button>
+		</div>
+		<div class="btn-group mr-2" role="group" aria-label="Second group">
+			<button type="button" class="btn btn-secondary">
+				Nombre Total des Boursiers LMD <span class="badge badge-light"
+					th:text="${lmd}"></span>
+			</button>
+			<button type="button" class="btn btn-info">
+				Nombre Total des Boursiers NLMD <span class="badge badge-light"
+					th:text="${nlmd}"></span>
+			</button>
+		</div>
+	</div>
+	<br>
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Details</h5>
+			<button type="button" class="btn btn-primary">
+				Edition <span class="badge badge-light"
+					th:text="${edition.getEdition()}"></span>
+			</button>
+			<button type="button" class="btn btn-success">
+				Date Creation <span class="badge badge-light"
+					th:text="${edition.getDateDepart()}"></span>
+			</button>
+			<button type="button" class="btn btn-danger">
+				Date Fin <span class="badge badge-light"
+					th:text="${edition.getDateFin()}"></span>
+			</button>
+			<button type="button" class="btn btn-light">
+				Total <span class="badge badge-dark"
+					th:text="${edition.sizeBoursiers()}"></span>
+			</button>
+		</div>
+	</div>
+	<br>
+	<div class="page-head"
+		style="background-color: #ffffff; padding-top: 30px; padding-bottom: 10px">
+		<div class="container">
+			<div class="row" style="margin-bottom: 20px">
+				<div class="col-md-6">
+					<h1>Statistiques</h1>
+				</div>
+			</div>
+			<div class="row" style="margin-bottom: 30px">
+				<div class="col-md-6" style="margin-top: 10px">
+					<div id="ParDiscipline" style="width: 100%; height: 300px;"></div>
+				</div>
+				<div class="col-md-6" style="margin-top: 10px">
+					<div id="ParFormation" style="width: 100%; height: 300px;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="collapse" id="collapseExample">
+		<div class="well">
+			<br>
+			<h4>La liste des boursiers LMD</h4>
+			<div th:object="${boursiersLMD}" class="col-sm-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Code Dossier</th>
+							<th scope="col">Boursier</th>
+							<th scope="col">Descipline</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="b : ${boursiersLMD}">
+							<td th:text=${b.getCIN()}></td>
+							<td><a th:text=${b.getNomComplet()}></a></td>
+							<td th:switch="${b.getDiscipline()}">
+								<p th:case="'chimie'">
+									<span class="badge badge-primary"
+										th:text="${b.getDiscipline()}"></span>
+								</p>
+								<p th:case="'physique'">
+									<span class="badge badge-success"
+										th:text="${b.getDiscipline()}"></span>
+								</p>
+								<p th:case="'biologie'">
+									<span class="badge badge-light" style="color: teal;"
+										th:text="${b.getDiscipline()}"></span>
+								</p>
+								<p th:case="'mathematique'">
+									<span class="badge badge-info" th:text="${b.getDiscipline()}"></span>
+								</p>
+								<p th:case="SI">
+									<span class="badge badge-warning"
+										th:text="${b.getDiscipline()}"></span>
+								</p>
+								<p th:case="'informatique'">
+									<span class="badge badge-dark" th:text="${b.getDiscipline()}"></span>
+								</p>
+								<p th:case="'lettre'">
+									<span class="badge badge-secondary"
+										th:text="${b.getDiscipline()}"></span>
+								</p>
+								<p th:case="'geologie'">
+									<span class="badge badge-danger" th:text="${b.getDiscipline()}"></span>
+								</p>
+								<p th:case="'droit/economie'">
+									<span class="badge badge-light" style="color: purple;"
+										th:text="${b.getDiscipline()}"></span>
+								</p>
+							</td>
+							<td>
+								<div class="btn-group mr-2" role="group"
+									aria-label="Fourth group">
+									<a class="btn btn-primary" role="button"
+										th:href="@{/paiements/paiements(id=${b.id})}">paiements</a> <a
+										class="btn btn-light" role="button"
+										th:href="@{/rapports/boursier/rapports(id=${b.id})}">rapports</a>
+									<a class="btn btn-danger" role="button"
+										th:href="@{/boursiers/retirer(id=${b.id})}">retirer</a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<br>
+		</div>
+	</div>
+	<div class="collapse" id="collapseExample1">
+		<div class="well">
+			<br>
+			<h4>La liste des boursiers NLMD</h4>
+			<div th:object="${boursiersNLMD}" class="col-sm-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Code Dossier</th>
+							<th scope="col">Boursier</th>
+							<th scope="col">Descipline</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="bb : ${boursiersNLMD}">
+							<td th:text=${bb.getCIN()}></td>
+							<td><a th:text=${bb.getNomComplet()}></a></td>
+							<td th:switch="${bb.getDiscipline()}">
+								<p th:case="'chimie'">
+									<span class="badge badge-primary"
+										th:text="${bb.getDiscipline()}"></span>
+								</p>
+								<p th:case="'physique'">
+									<span class="badge badge-success"
+										th:text="${bb.getDiscipline()}"></span>
+								</p>
+								<p th:case="'biologie'">
+									<span class="badge badge-light" style="color: teal;"
+										th:text="${bb.getDiscipline()}"></span>
+								</p>
+								<p th:case="'mathematique'">
+									<span class="badge badge-info" th:text="${bb.getDiscipline()}"></span>
+								</p>
+								<p th:case="SI">
+									<span class="badge badge-warning"
+										th:text="${bb.getDiscipline()}"></span>
+								</p>
+								<p th:case="'informatique'">
+									<span class="badge badge-dark" th:text="${bb.getDiscipline()}"></span>
+								</p>
+								<p th:case="'lettre'">
+									<span class="badge badge-secondary"
+										th:text="${bb.getDiscipline()}"></span>
+								</p>
+								<p th:case="'geologie'">
+									<span class="badge badge-danger"
+										th:text="${bb.getDiscipline()}"></span>
+								</p>
+								<p th:case="'droit/economie'">
+									<span class="badge badge-light" style="color: purple;"
+										th:text="${bb.getDiscipline()}"></span>
+								</p>
+							</td>
+							<td>
+								<div class="btn-group mr-2" role="group"
+									aria-label="Fourth group">
+									<a class="btn btn-primary" role="button"
+										th:href="@{/paiements/paiements(id=${bb.id})}">paiements</a> <a
+										class="btn btn-light" role="button"
+										th:href="@{/rapports/boursier/rapports(id=${bb.id})}">rapports</a>
+									<a class="btn btn-danger" role="button"
+										th:href="@{/boursiers/retirer(id=${bb.id})}">retirer</a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<br>
+		</div>
+	</div>
+	<br>
+	</main>
+	<script Layout:fragment="scripts" th:inline="javascript">
+	/*<![CDATA[*/
+		var map = /*[[${Map}]]*/;
+	console.log(map);
+		$(function() {
+			Highcharts.setOptions({
+				lang : {
+					decimalPoint : '.',
+					thousandsSep : ','
+				}
+			});
+
+			drawEditionByDisciplineChart();
+			drawEditionByFormationChart();
+		});
+
+		function drawEditionByFormationChart() {
+			var salesByRegionChart = Highcharts.chart('ParFormation', {
+				chart : {
+					type : 'pie',
+					margin : 40,
+					options3d : {
+						enabled : true,
+						alpha : 45,
+						beta : 0
+					}
+				},
+				title : {
+					text : 'Par Formation'
+				},
+				tooltip : {
+					pointFormat : "{point.y:,.0f}"
+				},
+				plotOptions : {
+					pie : {
+						allowPointSelect : true,
+						depth : 35
+					}
+				},
+				series : [ {
+					name : 'Type de Formation',
+					colorByPoint : true,
+					data : [ {
+						name : 'LMD',
+						y : /*[[${LMD}]]*/0
+					}, {
+						name : 'NLMD',
+						y : /*[[${NLMD}]]*/0
+					}]
+				} ]
+			});
+		}
+		
+		function drawEditionByDisciplineChart() {
+			var mdata = [];
+			for(var k in map){
+				var d ={}
+				d.name = k;
+				d.y = map[k];
+				mdata.push(d);
+			}
+			console.log(mdata);
+			var salesByRegionChart = Highcharts.chart('ParDiscipline', {
+				chart : {
+					type : 'pie',
+					margin : 40,
+					options3d : {
+						enabled : true,
+						alpha : 45,
+						beta : 0
+					}
+				},
+				title : {
+					text : 'Par Discipline'
+				},
+				tooltip : {
+					pointFormat : "{point.y:,.0f}"
+				},
+				plotOptions : {
+					pie : {
+						allowPointSelect : true,
+						depth : 35
+					}
+				},
+				series : [ {
+					name : 'Discipline',
+					colorByPoint : true,
+					data : mdata,
+			}]
+		});
+		}
+        
+        /*]]>*/
+	</script>
+</body>
+</html>
+

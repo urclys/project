@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:Layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	Layout:decorator="~{/layout}">
+<head>
+	<meta charset="utf-8">
+	<title th:text=${title}></title>
+</head>
+<body>
+
+	<main class="container" Layout:fragment="content" style="margin-top:4rem;">
+	<div class="contrat-box">
+		<h2 style="text-transform: uppercase;">Liste des boursiers</h2>
+		<br>
+		<form class="form-inline" method="get" th:action="@{rapports}" >
+			<div class="form-group mb-2 mx-sm-3">
+				<div class="input-group ">
+					<label for="EditionSelect" class="input-group-prepend"> <span
+						class="input-group-text" id="basic-addon3">Edition</span>
+					</label>
+					<select class="form-control" id="EditionSelect" name="edition">
+						<option value="">Edition</option>
+						<option th:each="e:${editions}" th:value="${e.Id}" th:text="${e.edition}" th:selected="${edition!=null && edition == e.Id}">2016</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group mb-2 mx-sm-3">
+				<div class="input-group ">
+					<label for="formationSelect" class="input-group-prepend"> <span
+						class="input-group-text" id="basic-addon3">Formation</span>
+					</label> <select class="form-control" id="formationSelect" name="formation">
+						<option value="">Formation</option>
+						<option value="LMD" th:selected="${formation!=null && formation.toString()=='LMD'}">LMD</option>
+						<option value="NLMD" th:selected="${formation!=null && formation.toString()=='NLMD'}">NLMD</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group mb-2">
+				<button type="submit" class="btn btn-primary">
+					Filtrer <i class="fa fa-filter"></i>
+				</button>
+			</div>
+		</form>
+
+		<table class="table" th:object="${boursiers}">
+			<thead>
+				<tr>
+					<th scope="col">Boursier</th>
+					<th scope="col">Etablissement</th>
+					<th scope="col">Etat bourse</th>
+					<th scope="col">Edition</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="b:${boursiers}">
+					<td><a th:href="@{boursier/rapports(id=${b.Id})}" th:text="${b.getNomComplet()}">QALLIDI Mohammed Amine</a></td>
+					<td th:text="${b.Formation.Etablissement}">Ecole Mohammadia d'ingénieur</td>
+					<td th:text="${b.EtatBoursier}">Valide</td>
+					<td th:text="${b.Edition}">2016</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</main>
+	<script></script>
+</body>
+</html>

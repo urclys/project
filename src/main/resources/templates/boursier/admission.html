@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:Layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	Layout:decorator="~{/layout}">
+<head>
+<meta charset="utf-8">
+<title th:text=${title}></title>
+<script Layout:fragment="scripts" th:inline="javascript" type="text/javascript">
+	function toggle(source) {
+		var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+		for (var i = 0; i < checkboxes.length; i++) {
+			if (checkboxes[i] != source)
+				checkboxes[i].checked = source.checked;
+		}
+	}
+</script>
+</head>
+<body>
+	<main class="container" Layout:fragment="content"
+		style="margin-top:4rem;">
+	<div class="box">
+		<h2 style="text-transform: uppercase;">Liste principale</h2>
+		<br>
+		<div class="col-sm-12">
+			<table th:object="${BoursiersAdmis}" class="table">
+				<thead>
+					<tr>
+						<th scope="col">Code Dossier</th>
+						<th scope="col">Boursier</th>
+						<th scope="col">Descipline</th>
+						<th scope="col" class="controlle-col">
+								<a class="btn btn-success btn-sm" role="button"
+										th:href="@{/boursiers/admission/admettre}">Admettre Tout</a>
+						</th>
+					</tr>
+				</thead>
+				<tbody th:each="ba : ${BoursiersAdmis}">
+					<tr th:each="baa : ${ba}">
+						<td th:text=${baa.getCIN()}></td>
+						<td><a href="@{boursier/(id=${baa.id})}" th:text=${baa.nom}></a></td>
+						<td th:switch="${baa.getDiscipline()}">
+							<p th:case="'chimie'">
+								<span class="badge badge-primary"
+									th:text="${baa.getDiscipline()}"></span>
+							</p>
+							<p th:case="'physique'">
+								<span class="badge badge-success"
+									th:text="${baa.getDiscipline()}"></span>
+							</p>
+							<p th:case="'biologie'">
+								<span class="badge badge-light" style="color: teal;"
+									th:text="${baa.getDiscipline()}"></span>
+							</p>
+							<p th:case="'mathematique'">
+								<span class="badge badge-info" th:text="${baa.getDiscipline()}"></span>
+							</p>
+							<p th:case="SI">
+								<span class="badge badge-warning"
+									th:text="${baa.getDiscipline()}"></span>
+							</p>
+							<p th:case="'informatique'">
+								<span class="badge badge-dark" th:text="${baa.getDiscipline()}"></span>
+							</p>
+							<p th:case="'lettre'">
+								<span class="badge badge-secondary"
+									th:text="${baa.getDiscipline()}"></span>
+							</p>
+							<p th:case="'geologie'">
+								<span class="badge badge-danger"
+									th:text="${baa.getDiscipline()}"></span>
+							</p>
+							<p th:case="'droit/economie'">
+								<span class="badge badge-light" style="color: purple;"
+									th:text="${baa.getDiscipline()}"></span>
+							</p>
+						</td>
+						<td class="controlle-col">
+							<a class="btn btn-danger btn-sm" role="button"
+										th:href="@{/boursiers/admission/desister(id=${baa.id})}">desister</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="row">
+			<div class="col-sm"></div>
+			<div class="col-sm">
+				<nav aria-label="..." style="margin: 0 auto;">
+					<ul class="pagination">
+						<li class="page-item disabled"><a class="page-link" href="#"
+							tabindex="-1">Previous</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item active"><a class="page-link" href="#">2
+								<span class="sr-only">(current)</span>
+						</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">Next</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-sm"></div>
+		</div>
+	</div>
+	<br>
+	<div class="box">
+		<h2 style="text-transform: uppercase;">Liste d'attente</h2>
+		<br>
+		<div th:object="${BoursiersEnAttente}" class="col-sm-12">
+			<table th:object="${be}" class="table">
+				<thead>
+					<tr>
+						<th scope="col">Code Dossier</th>
+						<th scope="col">Boursier</th>
+						<th scope="col">Descipline</th>
+					</tr>
+				</thead>
+				<tbody th:each="be : ${BoursiersEnAttente}">
+					<tr th:each="bea : ${be}">
+						<td th:text=${bea.getCIN()}></td>
+						<td><a href="@{boursier/(id=${bea.id})}" th:text=${bea.nom}></a></td>
+						<td th:switch="${bea.getDiscipline()}">
+							<p th:case="'chimie'">
+								<span class="badge badge-primary"
+									th:text="${bea.getDiscipline()}"></span>
+							</p>
+							<p th:case="'physique'">
+								<span class="badge badge-success"
+									th:text="${bea.getDiscipline()}"></span>
+							</p>
+							<p th:case="'biologie'">
+								<span class="badge badge-light" style="color: teal;"
+									th:text="${bea.getDiscipline()}"></span>
+							</p>
+							<p th:case="'mathematique'">
+								<span class="badge badge-info" th:text="${bea.getDiscipline()}"></span>
+							</p>
+							<p th:case="SI">
+								<span class="badge badge-warning"
+									th:text="${bea.getDiscipline()}"></span>
+							</p>
+							<p th:case="'informatique'">
+								<span class="badge badge-dark" th:text="${bea.getDiscipline()}"></span>
+							</p>
+							<p th:case="'lettre'">
+								<span class="badge badge-secondary"
+									th:text="${bea.getDiscipline()}"></span>
+							</p>
+							<p th:case="'geologie'">
+								<span class="badge badge-danger"
+									th:text="${bea.getDiscipline()}"></span>
+							</p>
+							<p th:case="'droit/economie'">
+								<span class="badge badge-light" style="color: purple;"
+									th:text="${bea.getDiscipline()}"></span>
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="row">
+				<div class="col-sm"></div>
+				<div class="col-sm">
+					<nav aria-label="..." style="margin: 0 auto;">
+						<ul class="pagination">
+							<li class="page-item disabled"><a class="page-link" href="#"
+								tabindex="-1">Previous</a></li>
+							<li class="page-item"><a class="page-link" href="#">1</a></li>
+							<li class="page-item active"><a class="page-link" href="#">2
+									<span class="sr-only">(current)</span>
+							</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="#">Next</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-sm"></div>
+			</div>
+		</div>
+	</div>
+	</main>
+</body>
+</html>
