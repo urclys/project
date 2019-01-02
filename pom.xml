@@ -154,6 +154,11 @@
 		</extensions>
 		<plugins>
 			<plugin>
+				<groupId> org.sonarsource.scanner.maven </groupId>
+				<artifactId> sonar-maven-plugin </artifactId>
+				<version> 3.5.0.1254 </version>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
@@ -167,7 +172,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				 <version>3.7</version>
+				<version>3.7</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
