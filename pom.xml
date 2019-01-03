@@ -153,12 +153,32 @@
 			</extension>
 		</extensions>
 		<plugins>
-		<plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <configuration>
-                        <excludeDefaultDirectories>true</excludeDefaultDirectories>
-                    </configuration>
-                </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>Deleting all files under target, but not target itself</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<excludeDefaultDirectories>true</excludeDefaultDirectories>
+					<filesets>
+						<fileset>
+							<directory>target/</directory>
+							<followSymlinks>false</followSymlinks>
+							<includes>
+								<include>**/*</include>
+							</includes>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId> org.sonarsource.scanner.maven </groupId>
 				<artifactId> sonar-maven-plugin </artifactId>
