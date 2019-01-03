@@ -153,6 +153,12 @@
 			</extension>
 		</extensions>
 		<plugins>
+		<plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <configuration>
+                        <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                    </configuration>
+                </plugin>
 			<plugin>
 				<groupId> org.sonarsource.scanner.maven </groupId>
 				<artifactId> sonar-maven-plugin </artifactId>
