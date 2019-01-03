@@ -20,6 +20,10 @@
 	</parent>
 
 	<properties>
+		<sonar.host.url>http://sonarqube:9000</sonar.host.url>
+		<sonar.login>be2fe3y27f07db354983dfxysdsa5256</sonar.login>
+		<sonar.language>java</sonar.language>
+		<sonar.scm.provider>git</sonar.scm.provider>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
